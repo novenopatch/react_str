@@ -1,52 +1,64 @@
-import React, { useState } from "react";
+import React, { Component } from 'react';
 import Fruit from "./Fruit";
 import FruitForm from "./FruitForm";
 import Navigation from "./Navigation";
 
-const ListExample = () => {
-  const [fruits, setFruits] = useState([
-    { id: 1, nom: "Abricot" },
-    { id: 2, nom: "Banane" },
-    { id: 3, nom: "Cerise" },
-  ]);
-  const handleClick = (id) => {
-    const fruitCopy = [...fruits];
+
+class ListExample extends  Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fruits: [
+        { id: 1, nom: "Abricot" },
+        { id: 2, nom: "Banane" },
+        { id: 3, nom: "Cerise" },
+      ],
+      newFruit: ""
+    };
+  }
+
+  handleClick = (id) => {
+    const fruitCopy = [...this.state.fruits];
     const fruitCopyUpdated = fruitCopy.filter((fruit) => fruit.id !== id);
-    setFruits(fruitCopyUpdated);
+    this.setState({ fruits: fruitCopyUpdated });
   };
-  const [newFruit, setNewFruit] = useState("");
 
-  //const inputRef = useRef();
-  const handleSubmit = (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
-    const fruitCopy = [...fruits];
-
+    const fruitCopy = [...this.state.fruits];
     const id = new Date().getTime();
-    const nom = newFruit;
+    const nom = this.state.newFruit;
     const newFruitAdd = { id, nom };
     fruitCopy.push(newFruitAdd);
-    setFruits(fruitCopy);
-    setNewFruit("");
+    this.setState({ fruits: fruitCopy, newFruit: "" });
   };
-  const handleChange = (event) => {
-    setNewFruit(event.target.value);
-  };
-  return (
-    <div>
-       <Navigation/>
-       <div className="container">
-            <h1>List of fruits</h1>
 
-            <ul>
-              {fruits.map((fruit) => (
-                <Fruit fruit={fruit} onClick={ (e) => handleClick(fruit.id) }/>
-              ))}
-            </ul>
-            <FruitForm handleChange={handleChange} handleSubmit={handleSubmit} newFruit={newFruit}/>
-         </div>
-            
-    </div>
-  );
-};
+  handleChange = (event) => {
+    this.setState({ newFruit: event.target.value });
+  };
+
+  render() {
+    return (
+      <div>
+        <Navigation />
+        <div className="container">
+          <h1>List of fruits</h1>
+
+          <ul>
+            {this.state.fruits.map((fruit) => (
+              <Fruit fruit={fruit} onClick={(e) => this.handleClick(fruit.id)} />
+            ))}
+          </ul>
+          <FruitForm
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+            newFruit={this.state.newFruit}
+          />
+        </div>
+      </div>
+    );
+  }
+}
 
 export default ListExample;
+

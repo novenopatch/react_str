@@ -7,6 +7,8 @@ const Examples = () => {
         {nom:"counter",description:""},
         {nom:"list",description:""},
         {nom:"countries",description:""},
+        {nom:"degree-converter",description:""},
+        {nom:"clock",description:""},
     ]
 
     return (
