@@ -9,6 +9,7 @@ const Examples = () => {
         {nom:"countries",description:""},
         {nom:"degree-converter",description:""},
         {nom:"clock",description:""},
+        {nom:"file-trans",description:""},
     ]
 
     return (

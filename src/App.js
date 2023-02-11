@@ -1,4 +1,6 @@
 import { BrowserRouter,Routes,Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.css"
+import "bootstrap/dist/js/bootstrap";
 import Counter from "./components/Counter";
 import Countries from "./components/Countries";
 import ListExample from "./components/ListExample";
@@ -7,6 +9,7 @@ import About from "./pages/About";
 import Examples from "./pages/Examples";
 import Home from "./pages/Home";
 import { Clock } from "./components/Clock";
+import FileTrans from "./components/FileTrans";
 
 
 
@@ -18,6 +21,7 @@ function App() {
       {routeName:"counter",compo:Counter},
       {routeName:"degree-converter",compo:Converter},
       {routeName:"clock",compo:Clock},
+      {routeName:"file-trans",compo:FileTrans},
 
     ]
   return (
